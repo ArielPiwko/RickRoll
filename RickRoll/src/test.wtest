@@ -1,0 +1,27 @@
+import RickRoll.*
+
+describe "Tests del ejercicio Total Rickall"{
+
+var morty = new Persona(56)
+var tioSteve = new Parasito(60,1)
+var primoNicky = new Parasito(70,5)
+var summer = new Persona(70)
+		
+	test "Morty infectado por Tio Steve y Nicky, queda con 50 de cordura" {
+		morty.infectarse(tioSteve)
+		morty.infectarse(primoNicky)
+		assert.equals(50,morty.cordura())
+	}
+
+	test "Summer no tiene parasitos, nivel de cordura de 70" {
+		assert.equals(70,summer.cordura())
+	}
+
+	test "Steve infecta a Summer por contacto con Morty, y se reproduce. Nicky la infecta pero no se reproduce"{
+		morty.infectarse(tioSteve)
+		morty.infectarse(primoNicky)
+		morty.entrarEnContactoCon(summer)
+		assert.equals(3,summer.parasitos().size())
+	}
+	
+}
